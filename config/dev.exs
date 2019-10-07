@@ -56,6 +56,9 @@ config :elixir_github_watch_list, ElixirGithubWatchListWeb.Endpoint,
     ]
   ]
 
+config :elixir_github_watch_list, ElixirGithubWatchListWeb.PageController,
+  github_key: "my-github-api-key"
+
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
 
