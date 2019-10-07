@@ -2,6 +2,42 @@
 <input id="user_name" type="text">
 <button class="btn" onclick="searchUser()">Search</button>
 
+<h1>Facts on <%= @user %>'s github presence</h1>
+<div class="row">
+  <div class="col-12 col-sm-6 col-md-3">
+    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Repositories</h5>
+        <h1 class="display-1 text-right" class="card-text"><%= @projects["data"]["user"]["repositories"]["totalCount"] %></h1>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-sm-6 col-md-3">
+    <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Organizations</h5>
+        <h1 class="display-1 text-right" class="card-text"><%= @projects["data"]["user"]["organizations"]["totalCount"] %></h1>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-sm-6 col-md-3">
+    <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Starred</h5>
+        <h1 class="display-1 text-right" class="card-text"><%= @projects["data"]["user"]["starredRepositories"]["totalCount"] %></h1>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-sm-6 col-md-3">
+    <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Commits</h5>
+        <h1 class="display-1 text-right" class="card-text"><%= @projects["data"]["user"]["contributionsCollection"]["totalCommitContributions"] %></h1>
+      </div>
+    </div>
+  </div>
+</div>
+
 <h1>Watched github projects for user <%= @user %></h1>
 <ul class="list-group">
   <%= for project <- @projects["data"]["user"]["watching"]["edges"] do %>
