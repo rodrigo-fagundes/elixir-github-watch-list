@@ -1,10 +1,18 @@
-<%= @user %>
 
+<input id="user_name" type="text">
+<button class="btn" onclick="searchUser()">Search</button>
+
+<h1>Watched github projects for user <%= @user %></h1>
 <ul class="list-group">
   <%= for project <- @projects["data"]["user"]["watching"]["edges"] do %>
     <li class="list-group-item">
-      <%= project["node"]["name"] %>
-
+      <p><%= project["node"]["name"] %></p>
     </li>
   <% end %>
 </ul>
+
+<script>
+  function searchUser() {
+    window.location.href = "/" + document.getElementById("user_name").value;
+  }
+</script>

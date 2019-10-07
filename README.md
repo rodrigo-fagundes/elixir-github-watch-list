@@ -26,3 +26,7 @@ Enter the dev.exs file and change the token to your API Key.
 config :elixir_github_watch_list, ElixirGithubWatchListWeb.PageController,
   github_key: "my-github-api-key"
 ```
+
+## URL
+
+Access the URL with the user you want to check (localhost:4000/rodrigo-fagundes). From there, you can change and search other users.

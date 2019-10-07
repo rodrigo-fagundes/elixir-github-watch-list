@@ -2,13 +2,15 @@ defmodule ElixirGithubWatchListWeb.PageController do
   use ElixirGithubWatchListWeb, :controller
 
   def index(conn, _params) do
-    render(conn, "index.html")
+    render(conn, "index.html", user: "", projects: %{})
   end
 
   def show(conn, %{"user" => user}) do
-    qry = "{ \"query\": \"query { user (login: \\\"#{user}\\\") { watching (first: 10) { totalCount, edges { node { id, name, url } } }, repositories { totalCount }, organizations { totalCount }, starredRepositories { totalCount }, contributionsCollection { totalCommitContributions, pullRequestContributions { totalCount } } } }\" }"
+    # Preparing query and api key
+    qry = "{ \"query\": \"query { user (login: \\\"#{user}\\\") { watching (first: 100) { totalCount, edges { node { id, name, url } } }, repositories { totalCount }, organizations { totalCount }, starredRepositories { totalCount }, contributionsCollection { totalCommitContributions, pullRequestContributions { totalCount } } } }\" }"
     apiKey = "token #{Application.get_env(:elixir_github_watch_list, ElixirGithubWatchListWeb.PageController)[:github_key]}"
-    IO.puts apiKey
+
+    # Calling Github API
     case HTTPoison.post(
       "https://api.github.com/graphql",
       qry,
